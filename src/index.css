@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  color: #333;
+  background-color: #518a58;
+}
+
+input,
+button {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 16px;
+}
+input,
+.react-datepicker__view-calendar-icon input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ba4949;
+  color: #fff;
+  cursor: pointer;
+}

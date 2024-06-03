@@ -1,0 +1,14 @@
+.bi-pencil-square,
+.bi-x-square-fill {
+  position: relative;
+  top: 4px;
+  margin-left: 10px;
+}
+
+.bi-pencil-square:hover {
+  color: rgb(20, 89, 215);
+}
+
+.bi-x-square-fill:hover {
+  color: darkgoldenrod;
+}

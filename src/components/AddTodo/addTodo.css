@@ -1,0 +1,30 @@
+.add-todo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.add-todo input {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .add-todo {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .add-todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .add-todo input {
+    width: auto;
+  }
+}
