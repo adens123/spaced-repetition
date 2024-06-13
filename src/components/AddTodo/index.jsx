@@ -24,6 +24,9 @@ const AddTodo = ({ todos, setTodos }) => {
   const isDone = false;
 
   function handleAddTodo() {
+    // 未輸入主題或內容時不新增
+    if (!subject || !content) return;
+
     const newTodos = JSON.parse(JSON.stringify(todos));
     const reviewDates = getreviewDates(startDate);
     const contentId = uuidv4();
