@@ -4,7 +4,7 @@ import "./todo.css";
 const Todo = ({
   reviewDate,
   subject,
-  contentId,
+  todoId,
   content,
   todoIsDone,
   allTodos,
@@ -14,12 +14,8 @@ const Todo = ({
   let newAllTodos = JSON.parse(JSON.stringify(allTodos));
   const emoji = "📝";
 
-  function handleDelete(contentId) {
-    newAllTodos.forEach(item => {
-      item.todos = item.todos.filter(todo => todo.contentId !== contentId);
-    });
-
-    newAllTodos = newAllTodos.filter(item => item.todos.length > 0);
+  function handleDelete(todoId) {
+    newAllTodos = newAllTodos.filter(item => item.todoId !== todoId);
 
     setTodos(newAllTodos);
   }
@@ -27,15 +23,13 @@ const Todo = ({
   function handleIsDone() {
     setIsDone(!isDone);
     newAllTodos.forEach(item => {
-      item.todos.forEach(todo => {
-        if (
-          item.reviewDate === reviewDate &&
-          todo.subject === subject &&
-          todo.content === content
-        ) {
-          todo.isDone = !todo.isDone;
-        }
-      });
+      if (item.todoId == todoId) {
+        item.reviewDates.forEach(date => {
+          if (date.reviewDate == reviewDate) {
+            date.isDone = !isDone;
+          }
+        });
+      }
     });
     setTodos(newAllTodos);
   }
@@ -54,7 +48,7 @@ const Todo = ({
             position: "relative",
             top: "6px"
           }}
-          onClick={handleIsDone}
+          onClick={() => handleIsDone(todoId)}
           xmlns="http://www.w3.org/2000/svg"
           width="26"
           height="26"
@@ -74,9 +68,7 @@ const Todo = ({
         {subject.startsWith(emoji) ? (
           <>
             <svg
-              onClick={() =>
-                confirm("確定要刪除嗎?!") && handleDelete(contentId)
-              }
+              onClick={() => confirm("確定要刪除嗎?!") && handleDelete(todoId)}
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"

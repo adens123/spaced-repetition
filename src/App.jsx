@@ -10,9 +10,50 @@ function App() {
       : []
   );
 
+  const newTodos = [];
+  todos.forEach(todo => {
+    todo.reviewDates.forEach((reviewDate, index) => {
+      let newSubject = todo.subject;
+      if (index == 0) {
+        newSubject = "📝" + newSubject;
+      }
+
+      const hasReviewDate = newTodos.find(item => {
+        if (item.reviewDate === reviewDate.reviewDate) {
+          item.todos.push({
+            subject: newSubject,
+            todoId: todo.todoId,
+            content: todo.content,
+            isDone: reviewDate.isDone
+          });
+          return true;
+        }
+      });
+
+      if (!hasReviewDate) {
+        newTodos.push({
+          reviewDate: reviewDate.reviewDate,
+          todos: [
+            {
+              subject: newSubject,
+              todoId: todo.todoId,
+              content: todo.content,
+              isDone: reviewDate.isDone
+            }
+          ]
+        });
+      }
+
+      newTodos.sort((a, b) => {
+        return new Date(a.reviewDate) - new Date(b.reviewDate);
+      });
+    });
+  });
+
   useEffect(() => {
     localStorage.setItem("mytodos", JSON.stringify(todos));
   }, [todos]);
+
   return (
     <>
       <div className="main">
@@ -21,7 +62,7 @@ function App() {
         </h1>
         <AddTodo todos={todos} setTodos={setTodos} />
         <TodoCardList>
-          {todos.map((item, index) => {
+          {newTodos.map((item, index) => {
             return (
               <TodoCard
                 key={index}

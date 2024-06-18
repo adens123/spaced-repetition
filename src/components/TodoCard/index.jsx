@@ -28,7 +28,7 @@ const TodoCard = ({ reviewDate, todos, allTodos, setTodos }) => {
             key={index}
             reviewDate={reviewDate}
             subject={todo.subject}
-            contentId={todo.contentId}
+            todoId={todo.todoId}
             content={todo.content}
             todoIsDone={todo.isDone}
             allTodos={allTodos}

@@ -29,46 +29,22 @@ const AddTodo = ({ todos, setTodos }) => {
 
     const newTodos = JSON.parse(JSON.stringify(todos));
     const reviewDates = getreviewDates(startDate);
-    const contentId = uuidv4();
+    const todoId = uuidv4();
 
-    reviewDates.forEach((reviewDate, index) => {
-      let newSubject = subject;
-      if (index == 0) {
-        newSubject = "📝" + newSubject;
-      }
-
-      const hasReviewDate = newTodos.find(todo => {
-        if (todo.reviewDate === reviewDate) {
-          todo.todos.push({
-            subject: newSubject,
-            contentId,
-            content,
-            isDone
-          });
-          return true;
-        }
-      });
-
-      if (!hasReviewDate) {
-        newTodos.push({
+    const newTodo = {
+      todoId,
+      subject,
+      content,
+      reviewDates: reviewDates.map(reviewDate => {
+        return {
           reviewDate,
-          todos: [
-            {
-              subject: newSubject,
-              contentId,
-              content,
-              isDone
-            }
-          ]
-        });
-      }
+          isDone
+        };
+      })
+    };
 
-      newTodos.sort((a, b) => {
-        return new Date(a.reviewDate) - new Date(b.reviewDate);
-      });
-
-      setTodos(newTodos);
-    });
+    newTodos.push(newTodo);
+    setTodos(newTodos);
 
     setStartDate(new Date());
     setSubject("");
