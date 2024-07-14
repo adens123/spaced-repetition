@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AddTodo from "./components/AddTodo";
 import TodoCardList from "./components/TodoCardList";
 import TodoCard from "./components/TodoCard";
+import Modal from "./components/Modal";
 
 function App() {
   const [todos, setTodos] = useState(
@@ -9,6 +10,8 @@ function App() {
       ? JSON.parse(localStorage.getItem("mytodos"))
       : []
   );
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const newTodos = [];
   todos.forEach(todo => {
@@ -54,13 +57,18 @@ function App() {
     localStorage.setItem("mytodos", JSON.stringify(todos));
   }, [todos]);
 
+  function handleModal(isOpen) {
+    setIsModalOpen(isOpen);
+  }
+
   return (
     <>
       <div className="main">
         <h1 style={{ margin: "20px 0", textAlign: "center" }}>
           自動化間隔複習清單
         </h1>
-        <AddTodo todos={todos} setTodos={setTodos} />
+        <AddTodo todos={todos} setTodos={setTodos} handleModal={handleModal} />
+        <hr />
         <TodoCardList>
           {newTodos.map((item, index) => {
             return (
@@ -70,11 +78,21 @@ function App() {
                 todos={item.todos}
                 allTodos={todos}
                 setTodos={setTodos}
+                handleModal={handleModal}
               />
             );
           })}
         </TodoCardList>
       </div>
+      {isModalOpen && (
+        <Modal handleModal={handleModal}>
+          <AddTodo
+            todos={todos}
+            setTodos={setTodos}
+            handleModal={handleModal}
+          />
+        </Modal>
+      )}
     </>
   );
 }

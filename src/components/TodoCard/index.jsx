@@ -1,6 +1,6 @@
 import Todo from "../Todo";
 
-const TodoCard = ({ reviewDate, todos, allTodos, setTodos }) => {
+const TodoCard = ({ reviewDate, todos, allTodos, setTodos, handleModal }) => {
   return (
     <div
       style={{
@@ -18,8 +18,27 @@ const TodoCard = ({ reviewDate, todos, allTodos, setTodos }) => {
         padding: "0 8px",
         borderRadius: "8px"
       }}>
-      <h3 style={{ borderBottom: "1px solid #639669", padding: "8px" }}>
+      <h3
+        style={{
+          borderBottom: "1px solid #639669",
+          padding: "8px",
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
         {reviewDate}
+        <span
+          style={{
+            color: "white",
+            backgroundColor: "lightblue",
+            padding: "0 6px",
+            borderRadius: "3px",
+            cursor: "pointer"
+          }}
+          onClick={() => {
+            handleModal(true);
+          }}>
+          +
+        </span>
       </h3>
 
       {todos.map((todo, index) => {

@@ -16,7 +16,7 @@ function getreviewDates(startDate) {
   });
 }
 
-const AddTodo = ({ todos, setTodos }) => {
+const AddTodo = ({ todos, setTodos, handleModal }) => {
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -49,10 +49,12 @@ const AddTodo = ({ todos, setTodos }) => {
     setStartDate(new Date());
     setSubject("");
     setContent("");
+
+    handleModal(false);
   }
 
   return (
-    <div className="add-todo" style={{}}>
+    <div className="add-todo">
       <DatePicker
         dateFormat="yyyy/MM/dd"
         selected={startDate}
