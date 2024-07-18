@@ -59,7 +59,7 @@ const Todo = ({
         </svg>
         <span
           style={{
-            color: isDone ? "#dfdfdf" : "#555",
+            color: isDone ? "#555" : "#fff",
             textDecoration: isDone ? "line-through" : "none"
           }}>
           <span style={{ fontWeight: "bold" }}>{subject}</span> - {content}

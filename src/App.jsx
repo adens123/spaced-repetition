@@ -68,7 +68,7 @@ function App() {
           自動化間隔複習清單
         </h1>
         <AddTodo todos={todos} setTodos={setTodos} handleModal={handleModal} />
-        <hr />
+        <hr style={{ marginTop: "5px", marginBottom: "5px" }} />
         <TodoCardList>
           {newTodos.map((item, index) => {
             return (
