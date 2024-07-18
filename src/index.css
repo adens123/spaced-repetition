@@ -12,6 +12,12 @@ body {
   background-color: #202124;
 }
 
+input {
+  color: #fff;
+  background-color: #202124;
+  outline: 1px solid #383a3d;
+}
+
 input,
 button {
   font-family: "Noto Sans TC", sans-serif;

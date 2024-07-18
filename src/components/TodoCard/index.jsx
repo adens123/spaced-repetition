@@ -4,7 +4,6 @@ const TodoCard = ({ reviewDate, todos, allTodos, setTodos, handleModal }) => {
   return (
     <div
       style={{
-        color: "#555555",
         backgroundColor:
           reviewDate ===
           new Date().toLocaleDateString("zh-TW", {
@@ -12,24 +11,24 @@ const TodoCard = ({ reviewDate, todos, allTodos, setTodos, handleModal }) => {
             month: "2-digit",
             day: "2-digit"
           })
-            ? "pink"
-            : "#fff",
-        border: "1px solid #ccc",
-        padding: "0 8px",
+            ? "#888"
+            : "#444",
+        padding: "8px 8px 16px 8px",
         borderRadius: "8px"
       }}>
       <h3
         style={{
-          borderBottom: "1px solid #639669",
+          borderBottom: "1px solid #fff",
           padding: "8px",
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          marginBottom: "10px"
         }}>
         {reviewDate}
         <span
           style={{
             color: "white",
-            backgroundColor: "lightblue",
+            backgroundColor: "#373737",
             padding: "0 6px",
             borderRadius: "3px",
             cursor: "pointer"
